@@ -18,6 +18,11 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/store/service_providers_slice"
+  ],
   "exclude": ["node_modules"]
 }
