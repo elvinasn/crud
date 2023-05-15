@@ -16,6 +16,7 @@ import { verificationStatusesActions } from "@/store/verification_statuses_slice
 import { addressesActions } from "@/store/addresses_slice/addresses_slice";
 import { userInfosActions } from "@/store/user_infos_slice/user_infos_slice";
 import ServiceProviderTable from "@/components/service_providers_table";
+import Header from "@/components/header";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -55,5 +56,10 @@ export default function Home() {
     _fetchAddresses();
     _fetchUserInfos();
   }, [dispatch]);
-  return <ServiceProviderTable />;
+  return (
+    <div>
+      <Header />
+      <ServiceProviderTable />;
+    </div>
+  );
 }

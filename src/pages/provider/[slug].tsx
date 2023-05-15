@@ -9,6 +9,7 @@ import {
   updateServiceProvider,
 } from "@/repositories/fetching_repository";
 import { useState } from "react";
+import Header from "@/components/header";
 
 export default function ServiceProviderPage(props: {
   serviceProvider: ServiceProvider;
@@ -20,31 +21,34 @@ export default function ServiceProviderPage(props: {
   );
   const router = useRouter();
   return (
-    <ServiceProviderContent
-      serviceProvider={props.serviceProvider}
-      errorMsg={errorMsg}
-      onSave={async (serviceProvider, address, userInfo, newServices) => {
-        const response = await updateServiceProvider(
-          serviceProvider,
-          address,
-          userInfo,
-          newServices,
-          oldServices
-        );
-        if (typeof response === "string") {
-          setErrorMsg(response);
-          return;
-        }
-        setErrorMsg(null);
-        router.push("/");
-      }}
-      onDelete={async (serviceProvider) => {
-        console.log("start");
-        await deleteServiceProviders([serviceProvider]);
-        console.log("end");
-        router.push("/");
-      }}
-    />
+    <div>
+      <Header />
+      <ServiceProviderContent
+        serviceProvider={props.serviceProvider}
+        errorMsg={errorMsg}
+        onSave={async (serviceProvider, address, userInfo, newServices) => {
+          const response = await updateServiceProvider(
+            serviceProvider,
+            address,
+            userInfo,
+            newServices,
+            oldServices
+          );
+          if (typeof response === "string") {
+            setErrorMsg(response);
+            return;
+          }
+          setErrorMsg(null);
+          router.push("/");
+        }}
+        onDelete={async (serviceProvider) => {
+          console.log("start");
+          await deleteServiceProviders([serviceProvider]);
+          console.log("end");
+          router.push("/");
+        }}
+      />
+    </div>
   );
 }
 // export async function getStaticPaths() {

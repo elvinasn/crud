@@ -6,7 +6,7 @@ import { useState } from "react";
 import Checkbox from "./checkbox";
 import DeleteButton from "./delete_button";
 import Dropdown from "./dropdown";
-import Header from "./header";
+import Heading from "./heading";
 import PrimaryButton from "./primary_button";
 import TextInput from "./text_input";
 import { Address } from "@/models/address";
@@ -173,11 +173,11 @@ export default function ServiceProviderContent(props: Props) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full justify-between font-mono text-sm flex flex-col gap-3">
+      <div className="z-10 w-full justify-between text-sm flex flex-col gap-3">
         <Link href=".." className="w-min">
           <PrimaryButton label="Grįžti" onClick={() => {}} />
         </Link>
-        <Header>Paslaugų tiekėjo informacija</Header>
+        <Heading>Paslaugų tiekėjo informacija</Heading>
         <TextInput
           id="id"
           label="Nr."
@@ -228,7 +228,7 @@ export default function ServiceProviderContent(props: Props) {
             }
           )}
         />
-        <Header>Paslaugų tiekėjo adresas</Header>
+        <Heading>Paslaugų tiekėjo adresas</Heading>
 
         <TextInput
           id="address"
@@ -257,7 +257,7 @@ export default function ServiceProviderContent(props: Props) {
           value={address.description ?? ""}
         />
 
-        <Header>Paslaugų tiekėjo asmeninė informacija</Header>
+        <Heading>Paslaugų tiekėjo asmeninė informacija</Heading>
         <TextInput
           id="name"
           label="Vardas, pavardė"
@@ -278,7 +278,7 @@ export default function ServiceProviderContent(props: Props) {
           onChange={imageUrlHandler}
           value={userInfo.imageUrl}
         />
-        <Header>Teikiamos paslaugos</Header>
+        <Heading>Teikiamos paslaugos</Heading>
         {services.map((service) => {
           return (
             <div

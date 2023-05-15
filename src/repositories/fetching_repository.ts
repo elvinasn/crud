@@ -1,4 +1,6 @@
 import { Address, addressSchema } from "@/models/address";
+import { Hemisphere } from "@/models/hemisphere";
+import { Report, reportSchema } from "@/models/report";
 import { Service, serviceSchema } from "@/models/service";
 import {
   ServiceProvider,
@@ -193,5 +195,30 @@ export const deleteServiceProviders = async (
   } catch (e) {
     console.log(e);
     return false;
+  }
+};
+
+export const getReport = async (
+  price: number,
+  hemisphere: Hemisphere,
+  year: number
+) => {
+  try {
+    const apiEndpoint = `http://localhost:3000/api/get_report?price=${price}&hemisphere=${hemisphere}&year=${year}`;
+    const response = await fetch(apiEndpoint);
+    const data = await response.json();
+    console.log("labas");
+    const report: Report[] = data.data.rows.map((item: any) => {
+      return reportSchema.cast(item);
+    });
+    const total = data.data.totalRow[0];
+    report.push({
+      ...total,
+      pet_owner_details: "Viso",
+    });
+    return report as Report[];
+  } catch (e) {
+    console.log(e);
+    return [];
   }
 };
